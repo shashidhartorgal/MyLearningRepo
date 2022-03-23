@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title> Products list</title>
+      <link rel="stylesheet"
+         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+         crossorigin="anonymous">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         <style>
+		table, th, td {
+		  border: 2px solid black;
+		  padding: 5px;
+		}
+		</style>
+   </head>
+   <body>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+         <div class="container">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle collapsed"
+                  data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                  aria-controls="navbar">
+               <span class="sr-only">navigation</span> <span
+                  class="icon-bar"></span> <span class="icon-bar"></span> <span
+                  class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+            </div>
+         </div>
+      </nav>
+      <br>
+      <br>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+               <h1>All products Listed</h1>
+               <table style="width:100%" >
+                  <tr>
+                     <th>Product ID</th>
+                     <th>Product Name</th>
+                     <th>Product Price</th>
+                     <th>Delete</th>
+                  </tr>
+                  <tr th:each="prod : ${prodlist}">
+                     <td th:text="${prod.prodId}">
+                     <td th:text="${prod.prodName}">
+                     <td  th:text="${prod.prodPrice}">
+                     <td> <form  th:action="@{/deleteProd/{id}(id=${prod.prodId})}" method="post">
+                      <button type="submit"><i class="fa fa-trash" style="color: red;"></button></form></td>
+                  </tr>
+               </table>
+                 <h3><a th:href="@{/productscatlog}">Add another product</a></h3>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
